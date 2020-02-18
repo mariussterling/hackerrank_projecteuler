@@ -32,15 +32,16 @@ for n in tqdm(range(1, max(Ns) + 1)):
     if sol > last[1]:
         last = n, sol
         # res[n] = n
+        # with open('euler39_solution.txt', 'a') as f:
+        #     f.write('\n'+str(n))
         res2.append(n)
 
-res2.append(math.inf)
+# res2.append(math.inf)
 for n in Ns:
     for i, x in enumerate(res2):
         if x <= n:
             continue
         print(res2[i - 1])
         break
-
-c = Counter([j[0] for i in d.values() for j in i])
-c.most
+with open('euler39_solution.txt', 'w') as f:
+    f.write('\n'.join(map(str, res2)))
