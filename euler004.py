@@ -1,30 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 12 09:07:30 2020
+Created on Mon Feb 24 20:39:40 2020
 
 @author: ms
 """
 
-n = 800009
+palindromelist = sorted(set([i * j for i in range(100, 1000) for j in range(100, 1000) if
+     str(i * j) == str(i * j)[::-1] and i * j >= 101101
+     ]), reverse=True)
 
-def palin(n):
-    a = int(str(n)) - 1
-    return int(f'{a:03d}' + f'{a:03d}'[::-1])
-def palin_rev(n):
-    a = int(str(n)) - 1
-    if a < 0:
-        return 0
-    return int(f'{a:03d}'[::-1] + f'{a:03d}')
-def palin_max(n):
-    a, b = palin(str(n)[:3]), palin_rev(str(n)[3:])
-    if b < 101101:
-        return a
-    if a < 101101:
-        return None
-    return max(a,b)
-n = palin_max(800000)
-print(n)
-
-for i in range(int(str(n)[:3]), 101, -1):
-    print(i)
+if __name__ == '__main__':
+    n = int(input())
+    for _ in range(n):
+        a = int(input())
+        for i in palindromelist:
+            if i < a:
+                print(i)
+                break
