@@ -1,25 +1,21 @@
 from collections import Counter
 
-N = 130
+N = int(input())
 
-def palindrom(x):
+def reverse(x):
     return int(str(x)[::-1])
 def is_palindrom(x):
-    x == palindrom(x)
-def find_palindrom(x, N):
+    return str(x) == str(x)[::-1]
+def find_palindrom(x):
     i = 0
-    while i < 60 and not is_palindrom(x) and x <=N:
+    while i < 60:
+        if is_palindrom(x):
+            return x
         i += 1
-        x += palindrom(x)
-    if x <= N:
-        return x
-    else:
-        return N+1
-
-c = Counter([find_palindrom(i, N) for i in range(1, N)])
-c
-
-x = 19
-x += palindrom(x)
-x
-is_palindrom(x)
+        x += reverse(x)
+        
+c = Counter([find_palindrom(i) for i in range(0, N + 1)])
+if None in c:
+    c.pop(None)
+res = c.most_common(1)[0]
+print(f"{res[0]} {res[1]}")
